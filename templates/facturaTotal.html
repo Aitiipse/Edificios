@@ -1,0 +1,42 @@
+{% extends 'layout.html'%}
+{% block titulo %}FacturaTotal{% endblock %}
+{% block contenido %}
+
+<h1>FACTURAS</h1>
+<div class="container">
+    <!-- Sign Up -->
+    <div class="container__form container--signin">
+        <form action="/facturaIndividual" method="POST" class="form" id="form1">
+            <h2 class="form__title">REGISTRO</h2>
+            <input type="text" name="idfactura" placeholder="Id de factura"><br>
+            <input type="text" name="valor" placeholder="Valor por consumo"><br>
+            <select name="mes">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Sepiembre">Sepiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+            </select><br>
+            <select name="tipo">
+                <option value="gas">Gas</option>
+                <option value="agua">Agua</option>
+                <option value="energia">Energía</option>
+            </select>
+
+            <button class="btn" type="submit" name="button">REGISTRAR</button>
+        </form>
+  
+    
+    </div>
+    
+</div>
+
+
+    {% endblock %}

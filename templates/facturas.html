@@ -1,0 +1,215 @@
+{% extends 'layout.html'%}
+{% block titulo %}Facturas{% endblock %}
+{% block contenido %}
+<h1>Facturas</h1>
+<form action="/registrarFactura" method="POST" class="containerA">
+    <h5>Mes</h5>
+    <select name="mes">
+        <option value="Enero">Enero</option>
+        <option value="Febrero">Febrero</option>
+        <option value="Marzo">Marzo</option>
+        <option value="Abril">Abril</option>
+        <option value="Mayo">Mayo</option>
+        <option value="Junio">Junio</option>
+        <option value="Julio">Julio</option>
+        <option value="Agosto">Agosto</option>
+        <option value="Sepiembre">Sepiembre</option>
+        <option value="Octubre">Octubre</option>
+        <option value="Noviembre">Noviembre</option>
+        <option value="Diciembre">Diciembre</option>
+    </select><br>
+    <h5>TORRE</h5>
+    <select name="torre">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <h5>LINEA</h5>
+    <select name="linea">
+        <option value="1">Linea 1</option>
+        <option value="2">Linea 2</option>
+        <option value="3">Linea 3</option>
+    </select>
+    <h5>APARTAMENTO</h5>
+    <select name="apartamento">
+        <option value="1">Apto 1</option>
+        <option value="2">Apto 2</option>
+        <option value="3">Apto 3</option>
+        <option value="4">Apto 4</option>
+    </select>
+    <h5>SERVICIOS</h5>
+    <input type="text" name="serviciogas" placeholder="Valor Gas">
+    <input type="text" name="servicioagua" placeholder="Valor Agua">
+    <input type="text" name="servicioenergia" placeholder="Valor Energía">
+    <button type="submit" name="button">Registrar</button>
+</form>
+
+<div class="containerA">
+    <!-- Sign Up -->
+    <div class="">
+        <form action="/facturaIndividual" method="POST" class="form" id="form1">
+            <h2 class="form__title">FACTURAS POR CONSUMO</h2>
+            <input type="text" name="idfactura" placeholder="Id de factura"><br>
+            <input type="text" name="valor" placeholder="Valor por consumo"><br>
+            <select name="mes">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Sepiembre">Sepiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+            </select><br>
+            <select name="tipo">
+                <option value="gas">Gas</option>
+                <option value="agua">Agua</option>
+                <option value="energia">Energía</option>
+            </select>
+
+            <button class="btn" type="submit" name="button">REGISTRAR</button>
+        </form>
+  
+    
+    </div>
+    
+</div>
+
+<h1>Tabla de consulta</h1>
+<table class="containerT">
+    <thead>
+        <tr>
+            <th>Factura consecutivo</th>
+            <th>Mes</th>
+            <th>Numero de torre</th>
+            <th>Linea</th>
+            <th>Gas</th>
+            <th>Agua</th>
+            <th>Energía</th>
+            <!-- <th>Editar</th> -->
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for factura in facturas %}
+        <tr>
+            <td>{{factura[0]}}</td>
+            <td>{{factura[1]}}</td>
+            <td>{{factura[2]}}</td>
+            <td>{{factura[3]}}</td>
+            <td>{{factura[4]}}</td>
+            <td>{{factura[5]}}</td>
+            <td>{{factura[6]}}</td>
+            <!-- <td><a href="/update" class="btne"> Editar </a></td> -->
+            <td><a onclick="return confirm('Desea eliminar este registro ?')" class="btnel" href="/delete/{{factura[0]}}">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+
+</table>
+<!-- <form action="/update" method="POST" class="containerA">
+    <h5>Mes</h5>
+    <select name="mes">
+        <option value="Enero">Enero</option>
+        <option value="Febrero">Febrero</option>
+        <option value="Marzo">Marzo</option>
+        <option value="Abril">Abril</option>
+        <option value="Mayo">Mayo</option>
+        <option value="Junio">Junio</option>
+        <option value="Julio">Julio</option>
+        <option value="Agosto">Agosto</option>
+        <option value="Sepiembre">Sepiembre</option>
+        <option value="Octubre">Octubre</option>
+        <option value="Noviembre">Noviembre</option>
+        <option value="Diciembre">Diciembre</option>
+    </select><br>
+    <h5>TORRE</h5>
+    <select name="torre">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <h5>LINEA</h5>
+    <select name="linea">
+        <option value="1">Linea 1</option>
+        <option value="2">Linea 2</option>
+        <option value="3">Linea 3</option>
+    </select>
+    <h5>APARTAMENTO</h5>
+    <select name="apartamento">
+        <option value="1">Apto 1</option>
+        <option value="2">Apto 2</option>
+        <option value="3">Apto 3</option>
+        <option value="4">Apto 4</option>
+    </select>
+    <h5>SERVICIOS</h5>
+    <input type="text" name="serviciogas" placeholder="Valor Gas">
+    <input type="text" name="servicioagua" placeholder="Valor Agua">
+    <input type="text" name="servicioenergia" placeholder="Valor Energía">
+    <button type="submit" name="button">Registrar</button>
+</form> -->
+<!-- <h1>Datos de consulta</h1>
+
+<form action="/consultarFactura" method="POST" class="containerA">
+   Torre
+    <select name="torreb">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>Apartamento
+    <select name="apartamentob">
+        <option value="1">Apto 1</option>
+        <option value="2">Apto 2</option>
+        <option value="3">Apto 3</option>
+        <option value="4">Apto 4</option>
+    </select>Mes
+    <select name="mesb">
+        <option value="Enero">Enero</option>
+        <option value="Febrero">Febrero</option>
+        <option value="Marzo">Marzo</option>
+        <option value="Abril">Abril</option>
+        <option value="Mayo">Mayo</option>
+        <option value="Junio">Junio</option>
+        <option value="Julio">Julio</option>
+        <option value="Agosto">Agosto</option>
+        <option value="Sepiembre">Sepiembre</option>
+        <option value="Octubre">Octubre</option>
+        <option value="Noviembre">Noviembre</option>
+        <option value="Diciembre">Diciembre</option>
+    </select><br>
+    </p>
+    <button type="submit" name="button">Consultar</button>
+    
+</form>
+<table>
+    <thead>
+        <tr>
+           
+            <th>valor</th>
+    </thead>
+    <tbody>
+
+        <tr>
+            {{costoPago1}}
+        </tr>
+
+</table> -->
+<!--inicio mensajes flash-->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert {{category}}" role="alert">
+    {{ message }}
+    {% endfor %}
+    <!--final mensajes flash-->
+</div>
+{% endif %}
+{% endwith %}
+
+
+
+
+{% endblock %}

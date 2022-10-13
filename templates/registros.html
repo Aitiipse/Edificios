@@ -1,0 +1,46 @@
+{% extends 'layout.html'%}
+
+{% block titulo %}
+	PÁGINA PRINCIPAL
+{% endblock %}
+
+{% block contenido %}
+
+
+	<!-- Sign In -->
+	<div class=" container--signin">
+	
+		<form action="/inicioSesion" method="POST" class="form" id="form2" style="background-color: rgba(0, 208, 255, 0.45);">
+			<h2 class="form__title">INICIAR SESIÓN</h2>
+			<input type="text" name="cedula" placeholder="Cedula" required><br>
+            <input type="password" name="contraseña" placeholder="Contraseña" required>
+			<button class="btn" type="submit">INICIAR SESIÓN</button>
+		</form>
+		<form action="/registrarUsuario" method="POST" class="form" id="form1" style="background-color: rgba(163, 205, 245, 0.475);">
+			<h2 class="form__title">REGISTRO</h2>
+			<input type="text" name="nombre" placeholder="Nombre" required><br>
+			Torre
+			<select name="torre">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>Apartamento
+			<select name="apartamento">
+				<option value="1">Apto 1</option>
+				<option value="2">Apto 2</option>
+				<option value="3">Apto 3</option>
+				<option value="4">Apto 4</option>
+			</select><br>
+            <input type="text" name="cedula" placeholder="Cedula" required><br>
+            <input type="password" name="contraseña" placeholder="Contraseña" required>
+			<button class="btn" type="submit" name="button">REGISTRAR</button>
+		</form>
+	</div>
+
+	
+
+
+
+
+
+{% endblock %}
